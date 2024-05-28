@@ -11,9 +11,14 @@ import com.rupicodes.managers.BookmarkManager;
 import com.rupicodes.managers.UserManager;
 
 public class DataStore {
-	private static User[] users = new User[5];
-	private static Bookmark[][] bookmarks = new Bookmark[3][5];
-	private static UserBookmark[] userBookmarks = new UserBookmark[5 * 5];
+	public static final int USER_BOOKMARK_LIMIT = 5;
+	public static final int BOOKMARK_COUNT_PER_TYPE = 5;
+	public static final int BOOKMARK_TYPES_COUNT = 3;
+	public static final int TOTAL_USER_COUNT = 5;
+
+	private static User[] users = new User[TOTAL_USER_COUNT];
+	private static Bookmark[][] bookmarks = new Bookmark[BOOKMARK_TYPES_COUNT][BOOKMARK_COUNT_PER_TYPE];
+	private static UserBookmark[] userBookmarks = new UserBookmark[TOTAL_USER_COUNT * USER_BOOKMARK_LIMIT];
 
 	public static User[] getUsers() {
 		return users;
@@ -28,6 +33,10 @@ public class DataStore {
 		loadWebLinks();
 		loadMovies();
 		loadBooks();
+	}
+
+	private static void loadWebLinks() {
+		bookmarks[0][0] = BookmarkManager.getInstance().createWeblink(2000,"Taming Tiger", "Part 2",	"http://www.javaworld.com/article/2072759/core-java/taming-tiger--part-2.html","http://www.javaworld.com"	);
 	}
 
 	private static void loadMovies() {
@@ -51,9 +60,5 @@ public class DataStore {
 				UserType.USER, Gender.MALE);
 		users[4] = UserManager.getInstance().createUser(1004, "user2@semanticsquare.com", "test", "John", "M",
 				UserType.USER, Gender.MALE);
-	}
-
-	private static void loadWebLinks() {
-		bookmarks[0][0] = BookmarkManager.getInstance().createWeblink(2000,"Taming Tiger", "Part 2",	"http://www.javaworld.com/article/2072759/core-java/taming-tiger--part-2.html","http://www.javaworld.com"	);
 	}
 }

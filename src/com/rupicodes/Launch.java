@@ -36,9 +36,17 @@ public class Launch {
 		}
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		loadData();
+	
+	private static void startBookmarking() {
+		System.out.println("2. Bookmarking....");
+		for(User user: users) {
+			View.bookmark(user, bookmarks);
+		}
 	}
 
+
+	public static void main(String[] args) {
+		loadData();
+		startBookmarking();
+	}
 }
