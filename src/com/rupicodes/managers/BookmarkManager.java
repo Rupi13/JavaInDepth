@@ -4,6 +4,8 @@ import com.rupicodes.dao.BookmarkDao;
 import com.rupicodes.entities.Book;
 import com.rupicodes.entities.Bookmark;
 import com.rupicodes.entities.Movie;
+import com.rupicodes.entities.User;
+import com.rupicodes.entities.UserBookmark;
 import com.rupicodes.entities.Weblink;
 
 public class BookmarkManager {
@@ -44,8 +46,8 @@ public class BookmarkManager {
 		book.setAmazonRating(amazonRating);
 		return book;
 	}
-	
-	public Weblink createWeblink(long id, String title, String profileUrl,  String url, String host) {
+
+	public Weblink createWeblink(long id, String title, String profileUrl, String url, String host) {
 		Weblink weblink = new Weblink();
 		weblink.setId(id);
 		weblink.setTitle(title);
@@ -54,8 +56,15 @@ public class BookmarkManager {
 		weblink.setHost(host);
 		return weblink;
 	}
-	
+
 	public Bookmark[][] getBookmarks() {
 		return dao.getBookmarks();
+	}
+
+	public void saveUserBookmark(User user, Bookmark bookmark) {
+		UserBookmark userBookmark = new UserBookmark();
+		userBookmark.setUser(user);
+		userBookmark.setBookmark(bookmark);
+		dao.saveUserBookmark(userBookmark);
 	}
 }

@@ -19,6 +19,7 @@ public class DataStore {
 	private static User[] users = new User[TOTAL_USER_COUNT];
 	private static Bookmark[][] bookmarks = new Bookmark[BOOKMARK_TYPES_COUNT][BOOKMARK_COUNT_PER_TYPE];
 	private static UserBookmark[] userBookmarks = new UserBookmark[TOTAL_USER_COUNT * USER_BOOKMARK_LIMIT];
+	private static int bookmarkIndex;
 
 	public static User[] getUsers() {
 		return users;
@@ -36,7 +37,9 @@ public class DataStore {
 	}
 
 	private static void loadWebLinks() {
-		bookmarks[0][0] = BookmarkManager.getInstance().createWeblink(2000,"Taming Tiger", "Part 2",	"http://www.javaworld.com/article/2072759/core-java/taming-tiger--part-2.html","http://www.javaworld.com"	);
+		bookmarks[0][0] = BookmarkManager.getInstance().createWeblink(2000, "Taming Tiger", "Part 2",
+				"http://www.javaworld.com/article/2072759/core-java/taming-tiger--part-2.html",
+				"http://www.javaworld.com");
 	}
 
 	private static void loadMovies() {
@@ -46,7 +49,7 @@ public class DataStore {
 
 	private static void loadBooks() {
 		bookmarks[2][0] = BookmarkManager.getInstance().createBook(4000, "Walden", "", 1854, "Wilder Publications",
-				new String[] { "Henry David", " Thoreau" },BookGenre.PHILOSOPHY ,4.3);
+				new String[] { "Henry David", " Thoreau" }, BookGenre.PHILOSOPHY, 4.3);
 	}
 
 	private static void loadUsers() {
@@ -60,5 +63,10 @@ public class DataStore {
 				UserType.USER, Gender.MALE);
 		users[4] = UserManager.getInstance().createUser(1004, "user2@semanticsquare.com", "test", "John", "M",
 				UserType.USER, Gender.MALE);
+	}
+
+	public static void add(UserBookmark userBookmark) {
+		userBookmarks[bookmarkIndex] = userBookmark;
+		bookmarkIndex++;
 	}
 }
