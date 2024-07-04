@@ -25,4 +25,9 @@ public class Weblink extends Bookmark {
 		return "Weblink [url=" + url + ", host=" + host + "]";
 	}
 
+	@Override
+	public boolean isKidFriendlyEligible() {
+		return true;
+	}
+
 }
