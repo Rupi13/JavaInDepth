@@ -53,7 +53,7 @@ public class DataStore {
 	}
 
 	private static void loadUsers() {
-		users[0] = UserManager.getInstance().createUser(1000, "user0@semanticsquare.com", "test", "John", "M",
+		users[0] = UserManager.getInstance().createUser(1000, "user0@semanticsquare.com", "test123", "John", "M",
 				UserType.USER, Gender.MALE);
 		users[1] = UserManager.getInstance().createUser(1001, "user1@semanticsquare.com", "test", "John", "M",
 				UserType.USER, Gender.MALE);
